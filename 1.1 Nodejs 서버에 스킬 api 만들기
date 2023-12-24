@@ -1,0 +1,82 @@
+1.1 Nodejs 서버에 스킬 api 만들기
+
+VS 코드 설치 - SFTP 접속 설정, SSH 접속 설정
+express 설치 과정 진행
+ip로 접속해서 사이트 확인
+
+서버 라우트를 만들고 접속해서 원하는 결과값이 나오는지 확인해 보기 
+
+
+인스턴스에 고정 아이피 연결
+아이피 혹은 도메인으로 사이트 연결 확인
+ssh 키 다운로드 (.pem)
+
+
+ssh -i pem파일경로 bitnami@서버아이피
+
+pem 파일 경로
+서버아이피 변경
+
+pem 오류시 권한 설정 과정 필요.
+
+ssh 연결 후에 서버에서 설치 진행
+
+1 프로젝트폴더 및 권한 설정
+sudo mkdir /opt/bitnami/projects
+sudo chown $USER /opt/bitnami/projects
+
+2 프로젝트 이름으로 만들어서 익스프레스 설치
+cd /opt/bitnami/projects
+express --view ejs chatbot
+cd chatbot/
+npm install
+
+3 pm2 설치 및 실행
+sudo npm install pm2 -g
+
+4 시간 설정
+sudo timedatectl set-timezone Asia/Seoul
+timedatectl
+sudo /opt/bitnami/ctlscript.sh restart apache
+
+5 pm2 시작
+pm2 start ./bin/www --watch --time --name "bot" --ignore-watch="public/* data/* node_modules/*"
+
+6 연결 설정 접속을 위한 설정
+sudo cp /opt/bitnami/apache/conf/vhosts/sample-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-vhost.conf
+sudo cp /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf
+sudo /opt/bitnami/ctlscript.sh restart apache
+
+*아이피 연결시 express 표시 확인
+
+7 서버 재시작해도, pm2 가 동작하도록 설정하기   
+cd /opt/bitnami/projects/chatbot   
+pm2 startup   
+(생성된 코드를 붙여 넣기) sudo env PATH=$PATH:/opt/bitnami/node/bin /opt/bitnami/node/lib/node_modules/pm2/bin/pm2 startup systemd -u bitnami --hp /home/bitnami"
+pm2 save 
+
+
+8 sftp 접속 및 파일 확인
+
+ftp-simple 설정 config 에 입력
+
+{
+"name": "1 서버이름",
+"host": "2 서버아이피",
+"port": 22,
+"type": "sftp",
+"username": "bitnami",
+"password": "",
+"privateKey": "3 pem파일경로",
+"path": "/opt/bitnami/projects/chatbot",
+"autosave": true,
+"confirm": false,
+"ignore": [
+"/**/node_modules"
+]
+}
+
+1,2,3 항목 변경
+
+
+
