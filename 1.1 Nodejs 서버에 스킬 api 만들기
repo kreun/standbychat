@@ -20,6 +20,23 @@ pem 파일 경로
 pem 오류시 권한 설정 과정 필요.
 
 ssh 연결 후에 서버에서 설치 진행
+------------------
+sudo mkdir /opt/bitnami/projects; sudo chown $USER /opt/bitnami/projects; cd /opt/bitnami/projects; express --view ejs chatbot; cd chatbot/; npm install; sudo npm install pm2 -g; sudo timedatectl set-timezone Asia/Seoul; timedatectl; sudo /opt/bitnami/ctlscript.sh restart apache; pm2 start ./bin/www --watch --time --name "bot" --ignore-watch="public/* data/* node_modules/*"; sudo cp /opt/bitnami/apache/conf/vhosts/sample-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-vhost.conf; sudo cp /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf; sudo /opt/bitnami/ctlscript.sh restart apache
+
+
+위의 동작이 끝나면   
+   
+cd /opt/bitnami/projects/chatbot   
+pm2 startup   
+(생성된 코드를 붙여 넣기)   
+sudo env PATH=$PATH:/opt/bitnami/node/bin /opt/bitnami/node/lib/node_modules/pm2/bin/pm2 startup systemd -u bitnami --hp /home/bitnami" pm2 save   
+
+pm2 log   
+-> 서버 로그 확인 (ssh로 연결된 상태여야 함 - 해당 ssh 만들어놔야 함)   
+아이피로 서버에 접근했을 때 express 기본 메시지 출력 확인 및 log 출력을 확인한다.   
+-------------------
+
+
 
 1 프로젝트폴더 및 권한 설정
 sudo mkdir /opt/bitnami/projects
