@@ -38,7 +38,8 @@ sudo mkdir /opt/bitnami/projects; sudo chown $USER /opt/bitnami/projects; cd /op
 cd /opt/bitnami/projects/chatbot   
 pm2 startup   
 (생성된 코드를 붙여 넣기)   
-sudo env PATH=$PATH:/opt/bitnami/node/bin /opt/bitnami/node/lib/node_modules/pm2/bin/pm2 startup systemd -u bitnami --hp /home/bitnami" pm2 save   
+sudo env PATH=$PATH:/opt/bitnami/node/bin /opt/bitnami/node/lib/node_modules/pm2/bin/pm2 startup systemd -u bitnami --hp /home/bitnami"   
+pm2 save   
 
 pm2 log   
 -> 서버 로그 확인 (ssh로 연결된 상태여야 함 - 해당 ssh 만들어놔야 함)   
