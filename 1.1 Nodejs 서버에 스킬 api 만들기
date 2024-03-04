@@ -21,18 +21,16 @@ pem 오류시 권한 설정 과정 필요.
 
 ssh 연결 후에 서버에서 설치 진행
 ------------------
-sudo mkdir /opt/bitnami/projects; sudo chown $USER /opt/bitnami/projects; cd /opt/bitnami/projects; express --view ejs chatbot; cd chatbot/; npm install; sudo npm install pm2 -g; sudo timedatectl set-timezone Asia/Seoul; timedatectl; sudo /opt/bitnami/ctlscript.sh restart apache; pm2 start ./bin/www --watch --time --name "bot" --ignore-watch="public/* data/* node_modules/*"; sudo cp /opt/bitnami/apache/conf/vhosts/sample-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-vhost.conf; sudo cp /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf; sudo /opt/bitnami/ctlscript.sh restart apache
-
-
-
-
 
 
 sudo mkdir /opt/bitnami/projects; sudo chown $USER /opt/bitnami/projects; cd /opt/bitnami/projects;
 git clone https://github.com/kreun/openbuilder-chatgpt.git chatbot;cd /opt/bitnami/projects/chatbot;npm install;
 sudo npm install pm2 -g; sudo timedatectl set-timezone Asia/Seoul; timedatectl; sudo /opt/bitnami/ctlscript.sh restart apache; pm2 start ./bin/www --watch --time --name "bot" --ignore-watch="public/* data/* node_modules/*"; sudo cp /opt/bitnami/apache/conf/vhosts/sample-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-vhost.conf; sudo cp /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf; sudo /opt/bitnami/ctlscript.sh restart apache
 
+
+***
 아래의 내용을 복사해서 한줄로 입력합니다.   
+----
 
 sudo mkdir /opt/bitnami/projects; sudo chown $USER /opt/bitnami/projects; cd /opt/bitnami/projects;git clone https://github.com/kreun/openbuilder-chatgpt.git chatbot;cd /opt/bitnami/projects/chatbot;npm install;sudo npm install pm2 -g; sudo timedatectl set-timezone Asia/Seoul; timedatectl; sudo /opt/bitnami/ctlscript.sh restart apache; pm2 start ./bin/www --watch --time --name "bot" --ignore-watch="public/* data/* node_modules/*"; sudo cp /opt/bitnami/apache/conf/vhosts/sample-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-vhost.conf; sudo cp /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf.disabled /opt/bitnami/apache/conf/vhosts/sample-https-vhost.conf; sudo /opt/bitnami/ctlscript.sh restart apache
 
